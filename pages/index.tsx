@@ -1,10 +1,6 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
 import { useAccount, useWriteContract, useReadContract } from "wagmi";
 import abi from "../components/abi.json";
 import { ReactNode, useState } from "react";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const { address, isConnected } = useAccount();
@@ -24,6 +20,14 @@ export default function Home() {
   ) => {
     setAliasName(event.target.value);
   };
+
+  const getContacts = useReadContract({
+    abi,
+    address: "0x5EBBA9DA35983A93f0A7a0FAd27c4ebf3a8B8aFf",
+    functionName: "getContacts",
+    account: address,
+  });
+  const contacts = getContacts.data || [];
 
   return (
     <main className="flex flex-col items-center justify-between p-12">
@@ -57,7 +61,7 @@ export default function Home() {
                 onChange={handleAliasNameChange}
               />
               <button
-                className=" mt-4 hover:bg-white hover:text-black bg-transparent text-white p-4 border rounded-lg w-48 mb-4"
+                className=" mt-4 hover:bg-white hover:text-black bg-transparent text-white p-4 border rounded-lg w-48 mb-8"
                 onClick={() =>
                   writeContract({
                     abi,
@@ -71,19 +75,24 @@ export default function Home() {
               </button>
             </div>
             <div className="flex flex-col items-center">
-              <button
-                className=" mt-4 hover:bg-white hover:text-black bg-transparent text-white p-4 border rounded-lg w-48 mb-4"
-                // onClick={}
-              >
+              <button className=" mt-4 hover:bg-white hover:text-black bg-transparent text-white p-4 border rounded-lg w-48 mb-4">
                 Get Contacts
               </button>
             </div>
             <div>
-              <h1 className="text-lg">
+              <h1 className="text-lg flex flex-col items-center mt-10">
                 <span className="font-bold">Contacts:</span>
               </h1>
-              <div className="flex flex-col gap-2 my-4 items-center justify-center border-b">
-                {/* once button clicked, print output here*/}
+
+              <div className="flex flex-col gap-2 my-4 items-center justify-center">
+                {(contacts as any[]).map((contact: any, index: number) => (
+                  <div
+                    key={index}
+                    className="flex flex-row items-center justify-between w-96"
+                  >
+                    <span>{contact}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </>
