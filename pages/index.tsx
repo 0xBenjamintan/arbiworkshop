@@ -74,11 +74,11 @@ export default function Home() {
                 Add Contact
               </button>
             </div>
-            <div className="flex flex-col items-center">
+            {/* <div className="flex flex-col items-center">
               <button className=" mt-4 hover:bg-white hover:text-black bg-transparent text-white p-4 border rounded-lg w-48 mb-4">
                 Get Contacts
               </button>
-            </div>
+            </div> */}
             <div>
               <h1 className="text-lg flex flex-col items-center mt-10">
                 <span className="font-bold">Contacts:</span>
