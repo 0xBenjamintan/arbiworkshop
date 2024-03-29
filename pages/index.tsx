@@ -1,6 +1,6 @@
 import { useAccount, useWriteContract, useReadContract } from "wagmi";
 import abi from "../components/abi.json";
-import { ReactNode, useState } from "react";
+import { useState } from "react";
 import dynamic from "next/dynamic";
 
 function Home() {
@@ -24,8 +24,8 @@ function Home() {
 
   const getContacts = useReadContract({
     abi,
-    address: "0x5EBBA9DA35983A93f0A7a0FAd27c4ebf3a8B8aFf",
-    functionName: "getContacts",
+    address: "0x....testaddress",
+    functionName: "",
     account: address,
   });
   const contacts = getContacts.data || [];
@@ -33,7 +33,7 @@ function Home() {
   return (
     <main className="flex flex-col items-center justify-between p-12">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 f  lex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
+        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
           Arbitrum Workshop
         </p>
         <div className="fixed left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
@@ -66,8 +66,8 @@ function Home() {
                 onClick={() =>
                   writeContract({
                     abi,
-                    address: "0x5EBBA9DA35983A93f0A7a0FAd27c4ebf3a8B8aFf",
-                    functionName: "addContact",
+                    address: "0x...test",
+                    functionName: "",
                     args: [contactAddress, aliasName],
                   })
                 }
