@@ -15,6 +15,7 @@ const chains = [arbitrumSepolia] as const;
 const config = defaultWagmiConfig({
   chains,
   projectId,
+  ssr: false,
   metadata: {
     name: "arbiworkshop",
     description: "APUBCC Bootcamp",
@@ -27,7 +28,7 @@ const config = defaultWagmiConfig({
 createWeb3Modal({
   wagmiConfig: config,
   projectId,
-  enableAnalytics: true, // Optional - defaults to your Cloud configuration
+  enableAnalytics: false, // Optional - defaults to your Cloud configuration
   enableOnramp: true, // Optional - false as default
 });
 
